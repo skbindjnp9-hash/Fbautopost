@@ -45,7 +45,6 @@ def generate_gemini_prompt():
 # Image API: Generate image
 # ===============================
 def generate_image(prompt_text):
-    # Replace with your actual Image Generation API
     payload = {
         "prompt": prompt_text,
         "size": "1024x1024"
@@ -99,11 +98,16 @@ def automation_job():
     print(f"[{datetime.now()}] Post completed.\n")
 
 # ===============================
+# Run first job immediately (1-minute instant post)
+# ===============================
+automation_job()
+
+# ===============================
 # Scheduler: Every 30 minutes
 # ===============================
 schedule.every(30).minutes.do(automation_job)
 
-print("Automation started. Running every 30 minutes...")
+print("Scheduler started. Next posts will run every 30 minutes...")
 
 while True:
     schedule.run_pending()
